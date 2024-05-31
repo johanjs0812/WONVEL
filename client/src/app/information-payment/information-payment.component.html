@@ -1,0 +1,927 @@
+<div class="booking-tour">
+
+  <section class="checkout-head d-block d-lg-block" >
+    <div class="container">
+      <div class="row">
+        <ul class="head col-12">
+          <li class="checked">1. Nhập thông tin</li>
+          <li class="checked">
+            <i class='bx bx-chevron-right'></i>
+          </li>
+          <li [ngClass]="{'checked': page === 'method'}">2. Thanh toán</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="checkout-main order-tour animate__fadeIn animate__animated">
+
+    <div class="container">
+
+      <div class="row">
+
+        <div class="col-12 top" [style.display]="page === 'inf' ? 'block' : 'none'">
+
+          <div class="product">
+
+            <div class="product-image">
+              <div class="image">
+                <img src="{{tour?.tour?.img}}" class="img-fluid" alt="image">
+              </div>
+            </div>
+
+            <div class="product-content">
+              <p class="title" id="title">{{tour?.tour?.tour_name}}</p>
+              <div class="entry">
+                <div class="entry-inner">
+                  <span>Mã Tour <b>{{tour?.tour?.code_tour}}</b></span>
+                  <span>Khởi hành <b>{{tour?.tour?.start_date}}</b></span>
+                  <span>Thời gian <b>{{timeday}}</b></span>
+                  <span>Nơi khởi hành <b>{{tour?.tour?.departure_location}}</b></span>
+                  <!-- <span>Số chỗ còn nhận <b>8</b></span> -->
+                  <!-- <span>Dịch vụ tùy chọn <b>Bay Vietnam Airlines - Khách sạn 5* Hôtel de la Coupole - MGallery</b></span> -->
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div style="display: flex;" class="phanchiathienha">
+
+          <div class="col-md-8 col-12 left" style="padding: 0 12px;">
+
+            <div class="payment-infor" [style.display]="page === 'inf' ? 'block' : 'none'">
+              <h2 class="d-none d-lg-block">Tổng quan về chuyến đi</h2>
+
+              <h3>Thông tin liên lạc</h3>
+
+              <div class="customer-contact mb-3">
+                <form class="customer-contact-inner" action="#" method="get" id="form">
+                  <div class="name">
+                    <label>Họ và Tên <b>*</b></label>
+                    <input #input1 autocomplete="off" type="text" class="form-control" name="fullName" value="{{account?.full_name}}">
+                    <div class="errorform error-notes">Vui lòng nhập thông tin</div>
+                  </div>
+                  <div class="mail">
+                    <label>Email <b>*</b></label>
+                    <input #input2 type="email" class="form-control" name="email" value="{{account?.email}}">
+                    <div class="errorform error-notes">Vui lòng nhập thông tin</div>
+                  </div>
+                  <div class="phone">
+                    <label>Số điện thoại <b>*</b></label>
+                    <input #input3 type="number" class="form-control" name="phone" value="{{account?.phone_number}}">
+                    <div class="errorform error-notes">Vui lòng nhập thông tin</div>
+                  </div>
+                  <div class="addess">
+                    <label>Địa chỉ</label>
+                    <input #input4 type="text" class="form-control" name="address" value="{{account?.address}}" style="margin-bottom: 18px;">
+                    <!-- <div class="errorform error-notes">Vui lòng nhập thông tin</div> -->
+                  </div>
+                </form>
+              </div>
+
+              <div class="customer">
+
+                <h3>Hành khách</h3>
+
+                <div class="change">
+                  <div class="change-title">
+                    <h4>Người lớn</h4>
+                    <p>Từ 12 tuổi</p>
+                  </div>
+                  <div class="change-number">
+                    <span class="minus btn-click" (click)="removePeople('adults')"><i class="bx bx-minus-circle" id="adultMinus"></i></span>
+                    <span class="number" id="adult">{{adultsArray.length}}</span>
+                    <span class="plus btn-click" (click)="addPeople('adults')"><i class="bx bx-plus-circle" id="adultPlus"></i></span>
+                  </div>
+                </div>
+
+                <div class="change">
+                  <div class="change-title">
+                    <h4>Trẻ em</h4>
+                    <p>Từ 5 - 11 tuổi</p>
+                  </div>
+                  <div class="change-number">
+                    <span class="minus btn-click" (click)="removePeople('childrens')"><i class="bx bx-minus-circle" id="childrenMinus"></i></span>
+                    <span class="number" id="children">{{childrenArray.length}}</span>
+                    <span class="plus btn-click" (click)="addPeople('childrens')"><i class="bx bx-plus-circle" id="childrenPlus"></i></span>
+                  </div>
+                </div>
+
+                <div class="change">
+                  <div class="change-title">
+                    <h4>Trẻ nhỏ</h4>
+                    <p>Từ 2 - 4 tuổi</p>
+                  </div>
+                  <div class="change-number">
+                    <span class="minus btn-click" (click)="removePeople('young_childs')"><i class="bx bx-minus-circle" id="smallchildrenMinus"></i></span>
+                    <span class="number" id="smallchildren">{{young_childsArray.length}}</span>
+                    <span class="plus btn-click" (click)="addPeople('young_childs')"><i class="bx bx-plus-circle" id="smallchildrenPlus"></i></span>
+                  </div>
+                </div>
+
+                <div class="change">
+                  <div class="change-title">
+                    <h4>Em bé</h4>
+                    <p>Từ 0 - 2 tuổi</p>
+                  </div>
+                  <div class="change-number">
+                    <span class="minus btn-click" (click)="removePeople('babys')"><i class="bx bx-minus-circle" id="babyMinus"></i></span>
+                    <span class="number" id="baby">{{babysArray.length}}</span>
+                    <span class="plus btn-click"  (click)="addPeople('babys')"><i class="bx bx-plus-circle" id="babyPlus"></i></span>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="customer-notice">
+                <div class="customer-notice-left">. Người lớn sinh trước ngày<b class="mx-1">08/06/2012</b><br>. Trẻ nhỏ sinh từ<b class="mx-1">09/06/2019</b> đến<b class="mx-1">08/06/2022</b></div>
+                <div class="customer-notice-right">. Trẻ em sinh từ<b class="mx-1">09/06/2012</b>đến<b class="mx-1">08/06/2019</b><br>. Em bé sinh từ<b class="mx-1">09/06/2022</b>đến<b class="mx-1">10/06/2024</b></div>
+              </div>
+
+              <section class="wrap-info-customer-number-person-details mt-4 wrapper-new-input">
+                <div class="title-section mb-3 title-hotel-flight-infor" style="display: flex; justify-content: space-between;">
+                  <span>Thông tin hành khách</span>
+                  <span id="alert" [style.visibility]="alertVisible ? 'visible' : 'hidden'"
+                  style="color: red;font-size: 13px; font-weight: 400;">Tối thiểu phải có 1 hành khách!
+                  </span>
+               </div>
+
+                <div class="group-fields-input-contact-adult group-fields-input-contact-wrapper mb-3">
+                  <div class="title-persona">
+                    <img src="https://travel.com.vn/images/icons/persons/adult.svg">Người lớn
+                  </div>
+
+                  <div class="row" *ngFor="let item of adultsArray; let i = index">
+                    <div class="col-lg-3 col-12" style="width: 43%;">
+                      <div class="form-group">
+                        <label class="pb-1 font-700">Họ và tên <span class="text-danger">*</span></label>
+                        <input #adultsInput type="text" class="form-control fullName hotel-flight-input" placeholder="Nhập họ tên" name="fullName">
+                        <div class="errorform error-notes">Vui lòng nhập thông tin</div>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-2 col-12" style="width: 16%;">
+                      <div class="form-group select-custom-icon">
+                        <label class="pb-1 white-space-nowrap">Giới tính <span class="text-danger">*</span></label>
+                        <select #selectgdAdults class="form-control title title-gender hotel-flight-input" name="gender" >
+                          <option value="Nam">Nam</option>
+                          <option value="Nữ">Nữ</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-5 col-12" style="width: 41%;">
+
+                      <div class="row">
+
+                        <div class="col-sm-4 col-4 mt-sm-0 " style="width: 33%; margin-top: 0px;">
+                          <div class="form-group select-custom-icon">
+                            <label class="pb-1 white-space-nowrap font-700">Ngày sinh <span class="text-danger">*</span></label>
+                            <select #selectdayAdults class="form-control birth-date hotel-flight-input" name="dayOfMonth" name="gender">
+                              <option value="">Ngày</option>
+                              <option value="{{day}}" *ngFor="let day of days">{{day}}</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-4 col-4 mt-sm-0 " style="width: 33%;">
+                          <div class="form-group select-custom-icon">
+                            <label class="pb-1">&nbsp;</label>
+                            <select #selectmonthAdults class="form-control birth-month hotel-flight-input" name="monthOfYear" >
+                              <option value="">Tháng</option>
+                              <option value="{{month}}" *ngFor="let month of months">{{month}}</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-4 col-4 mt-sm-0 " style="width: 33%;">
+                          <div class="form-group select-custom-icon">
+                            <label class="pb-1">&nbsp;</label>
+
+                            <select #selectyearAdults class="form-control birth-year birth-year-adult hotel-flight-input" name="yearOfYear" >
+                              <option value="">Năm</option>
+                              <option value="{{year}}" *ngFor="let year of adultsYears">{{year}}</option>
+                            </select>
+
+                          </div>
+                        </div>
+
+                        <div class="errorform error-notes">Vui lòng nhập thông tin</div>
+                      </div>
+
+                    </div>
+
+                    <!-- <div class="col-sm-2 col-2 mt-sm-0" style="width: 16%;">
+
+                      <div class="form-group select-custom-icon" style="height: 100%;">
+                        <label class="pb-1">Phòng đơn</label>
+                        <br>
+                        <div class="form-check form-switch">
+
+                        </div>
+                      </div>
+
+                    </div> -->
+
+                  </div>
+
+                </div>
+
+                <div class="group-fields-input-contact-adult group-fields-input-contact-wrapper mb-3">
+                  <div class="title-persona" *ngIf="childrenArray.length > 0">
+                    <img src="https://travel.com.vn/images/icons/persons/child.svg">Trẻ em
+                  </div>
+
+                  <div class="row" *ngFor="let i of childrenArray">
+
+                    <div class="col-lg-3 col-12" style="width: 43%;">
+                      <div class="form-group">
+                        <label class="pb-1 font-700">Họ và tên <span class="text-danger">*</span></label>
+                        <input #childrensInput type="text" class="form-control fullName hotel-flight-input" placeholder="Nhập họ tên" name="fullName">
+                        <div class="errorform error-notes">Vui lòng nhập thông tin</div>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-2 col-12" style="width: 16%;">
+                      <div class="form-group select-custom-icon">
+                        <label class="pb-1 white-space-nowrap">Giới tính <span class="text-danger">*</span></label>
+                        <select #selectgdChildrens class="form-control title title-gender hotel-flight-input" name="gender" >
+                          <option value="Nam">Nam</option><option value="Nữ">Nữ</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-5 col-12" style="width: 41%;">
+
+                      <div class="row">
+
+                        <div class="col-sm-4 col-4 mt-sm-0 " style="width: 33%; margin-top: 0px;">
+                          <div class="form-group select-custom-icon">
+                            <label class="pb-1 white-space-nowrap font-700">Ngày sinh <span class="text-danger">*</span></label>
+                            <select #selectdayChildrens class="form-control birth-date hotel-flight-input" name="dayOfMonth">
+                              <option value="">Ngày</option>
+                              <option value="{{day}}" *ngFor="let day of days">{{day}}</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-4 col-4 mt-sm-0 " style="width: 33%;">
+                          <div class="form-group select-custom-icon">
+                            <label class="pb-1">&nbsp;</label>
+                            <select #selectmonthChildrens class="form-control birth-month hotel-flight-input" name="monthOfYear">
+                              <option value="">Tháng</option>
+                              <option value="{{month}}" *ngFor="let month of months">{{month}}</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-4 col-4 mt-sm-0 " style="width: 33%;">
+                          <div class="form-group select-custom-icon">
+                            <label class="pb-1">&nbsp;</label>
+
+                            <select #selectyearChildrens class="form-control birth-year birth-year-adult hotel-flight-input" name="yearOfYear">
+                              <option value="">Năm</option>
+                              <option value="{{year}}" *ngFor="let year of childrenYears">{{year}}</option>
+                            </select>
+
+                          </div>
+                        </div>
+
+                        <div class="errorform error-notes">Vui lòng nhập thông tin</div>
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+                <div class="group-fields-input-contact-adult group-fields-input-contact-wrapper mb-3">
+                  <div class="title-persona" *ngIf="young_childsArray.length > 0">
+                    <img src="https://travel.com.vn/images/icons/persons/child.svg">Trẻ nhỏ
+                  </div>
+
+                  <div class="row" *ngFor="let i of young_childsArray">
+                    <div class="col-lg-3 col-12" style="width: 43%;">
+                      <div class="form-group">
+                        <label class="pb-1 font-700">Họ và tên <span class="text-danger">*</span></label>
+                        <input #young_childsInput type="text" class="form-control fullName hotel-flight-input" placeholder="Nhập họ tên" name="fullName">
+                        <div class="errorform error-notes">Vui lòng nhập thông tin</div>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-2 col-12" style="width: 16%;">
+                      <div class="form-group select-custom-icon">
+                        <label class="pb-1 white-space-nowrap">Giới tính <span class="text-danger">*</span></label>
+                        <select #selectgdYoungChilds class="form-control title title-gender hotel-flight-input" name="gender">
+                          <option value="Nam">Nam</option><option value="Nữ">Nữ</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-5 col-12" style="width: 41%;">
+
+                      <div class="row">
+
+                        <div class="col-sm-4 col-4 mt-sm-0 " style="width: 33%; margin-top: 0px;">
+                          <div class="form-group select-custom-icon">
+                            <label class="pb-1 white-space-nowrap font-700">Ngày sinh <span class="text-danger">*</span></label>
+                            <select #selectdayYoungChilds class="form-control birth-date hotel-flight-input" name="dayOfMonth">
+                              <option value="">Ngày</option>
+                              <option value="{{day}}" *ngFor="let day of days">{{day}}</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-4 col-4 mt-sm-0 " style="width: 33%;">
+                          <div class="form-group select-custom-icon">
+                            <label class="pb-1">&nbsp;</label>
+                            <select #selectmonthYoungChilds class="form-control birth-month hotel-flight-input" name="monthOfYear">
+                              <option value="">Tháng</option>
+                              <option value="{{month}}" *ngFor="let month of months">{{month}}</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-4 col-4 mt-sm-0 " style="width: 33%;">
+                          <div class="form-group select-custom-icon">
+                            <label class="pb-1">&nbsp;</label>
+
+                            <select #selectyearYoungChilds class="form-control birth-year birth-year-adult hotel-flight-input" name="yearOfYear">
+                              <option value="">Năm</option>
+                              <option value="{{year}}" *ngFor="let year of toddlersYears">{{year}}</option>
+                            </select>
+
+                          </div>
+                        </div>
+
+                        <div class="errorform error-notes">Vui lòng nhập thông tin</div>
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+                <div class="group-fields-input-contact-adult group-fields-input-contact-wrapper mb-3">
+                  <div class="title-persona" *ngIf="babysArray.length > 0">
+                    <img src="https://travel.com.vn/images/icons/persons/child.svg">Em bé
+                  </div>
+
+                  <div class="row" *ngFor="let i of babysArray">
+                    <div class="col-lg-3 col-12" style="width: 43%;">
+                      <div class="form-group">
+                        <label class="pb-1 font-700">Họ và tên <span class="text-danger">*</span></label>
+                        <input #babysInput type="text" class="form-control fullName hotel-flight-input" placeholder="Nhập họ tên" name="fullName">
+                        <div class="errorform error-notes">Vui lòng nhập thông tin</div>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-2 col-12" style="width: 16%;">
+                      <div class="form-group select-custom-icon">
+                        <label class="pb-1 white-space-nowrap">Giới tính <span class="text-danger">*</span></label>
+                        <select #selectgdBabys class="form-control title title-gender hotel-flight-input" name="gender">
+                          <option value="Nam">Nam</option><option value="Nữ">Nữ</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-5 col-12" style="width: 41%;">
+
+                      <div class="row">
+
+                        <div class="col-sm-4 col-4 mt-sm-0 " style="width: 33%; margin-top: 0px;">
+                          <div class="form-group select-custom-icon">
+                            <label class="pb-1 white-space-nowrap font-700">Ngày sinh <span class="text-danger">*</span></label>
+                            <select #selectdayBabys class="form-control birth-date hotel-flight-input" name="dayOfMonth">
+                              <option value="">Ngày</option>
+                              <option value="{{day}}" *ngFor="let day of days">{{day}}</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-4 col-4 mt-sm-0 " style="width: 33%;">
+                          <div class="form-group select-custom-icon">
+                            <label class="pb-1">&nbsp;</label>
+                            <select #selectmonthBabys class="form-control birth-month hotel-flight-input" name="monthOfYear">
+                              <option value="">Tháng</option>
+                              <option value="{{month}}" *ngFor="let month of months">{{month}}</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-4 col-4 mt-sm-0 " style="width: 33%;">
+                          <div class="form-group select-custom-icon">
+                            <label class="pb-1">&nbsp;</label>
+
+                            <select #selectyearBabys class="form-control birth-year birth-year-adult hotel-flight-input" name="yearOfYear">
+                              <option value="">Năm</option>
+                              <option value="{{year}}" *ngFor="let year of babiesYears">{{year}}</option>
+                            </select>
+
+                          </div>
+                        </div>
+
+                        <div class="errorform error-notes">Vui lòng nhập thông tin</div>
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </section>
+
+
+            </div>
+
+<!-- ========================================================================== -->
+            <div class="payment-method" [style.display]="page === 'method' ? 'block' : 'none'">
+              <h2 class="d-none d-lg-block">Thanh toán</h2>
+
+              <div class="payments-warp">
+
+                <h3>Các hình thức thanh toán</h3>
+
+                <div class="payments">
+                  <div class="payment-item">
+                    <div class="pm-head">
+                      <div class="pm-head-icon">
+                        <i class='bx bx-money'></i>
+                        <h4>Tiền mặt</h4>
+                      </div>
+                      <input #cash class="check" type="radio" name="payment-type" value="Thanh toán tiền mặt">
+                    </div>
+                    <div class="pm-des">
+                      <div>
+                        <p style="text-align:justify">
+                          Quý khách vui lòng thanh toán tại bất kỳ văn phòng Vietravel trên toàn quốc và các chi nhánh tại nước ngoài. Xem
+                          <a href="https://travel.com.vn/lien-he.aspx">chi tiết</a>.
+                        </p>
+                        <p>&nbsp;</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="payment-item">
+
+                    <div class="pm-head">
+                      <div class="pm-head-icon">
+                        <i class='bx bxs-bank' ></i>
+                        <h4>Chuyển khoản</h4>
+                      </div>
+                      <input #bank class="check" type="radio" name="payment-type" value="Thanh toán chuyển khoản">
+                    </div>
+
+                    <div class="pm-des">
+                      <div>
+                        <p style="text-align:justify">
+                          Quý khách sau khi thực hiện việc chuyển khoản vui lòng gửi email đến
+                          <span style="color:#ff0000"><strong> </strong></span>
+                          <span style="color:#cc0000"><strong>tructuyen&#64;wonvel.com</strong></span>&nbsp;hoặc gọi tổng đài <strong>
+                          <span style="color:#cc0000">19001839</span>
+                          </strong> để được xác nhận từ công ty chúng tôi.
+                        </p>
+
+                        <div style="text-align:justify">Tên Tài Khoản : Công ty CP Du lịch và Tiếp thị GTVT Việt Nam – Vietravel</div>
+
+                        <div style="text-align:justify">Tên tài khoản viết tắt : VIETRAVEL</div>
+
+                        <div style="text-align:justify">Số Tài khoản : <strong>111 6977 27979</strong></div>
+
+                        <div style="text-align:justify">Ngân hàng : Vietinbank - Chi nhánh 7</div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="payment-item">
+                    <div class="pm-head">
+                      <div class="pm-head-icon">
+                        <i class='bx bx-credit-card-alt' ></i>
+                        <h4>Thẻ tín dụng</h4>
+                      </div>
+                      <input #credit class="check" type="radio" name="payment-type" value="Thanh toán thẻ tín dụng">
+                    </div>
+                    <div class="pm-des">
+
+                      <div class="row d-flex justify-content-between mb-3">
+                        <div class="col-3">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="payment-option-type" value="thevisa">
+                            <label class="form-check-label">
+                              <img src="https://api.travel.com.vn/Content/Icon/Payment/NameCard/thevisa.png" alt="amex"></label>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="payment-option-type" value="master">
+                            <label class="form-check-label">
+                              <img src="https://api.travel.com.vn/Content/Icon/Payment/NameCard/master.png" alt="amex">
+                            </label>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="payment-option-type" value="jcb">
+                            <label class="form-check-label">
+                              <img src="https://api.travel.com.vn/Content/Icon/Payment/NameCard/jcb.png" alt="amex">
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-3">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="payment-option-type" value="amex">
+                            <label class="form-check-label">
+                              <img src="https://api.travel.com.vn/Content/Icon/Payment/NameCard/amex.png" alt="amex">
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div>
+                        <p><span style="font-size:18px"><span style="color:#ff0000"><span style="font-family:Times New Roman,Times,serif"><strong>THANH TOÁN BẰNG THẺ TÍN DỤNG</strong></span></span></span></p>
+
+                        <p style="text-align:justify"><span style="font-family:Times New Roman,Times,serif">Tất cả giao dịch của Quý khách được xử lý bảo mật theo giao thức SSL tại hệ thống của <em> <strong>MasterCard</strong></em>. Vietravel không lưu giữ bất kì thông tin nào về thẻ của quý khách tại hệ thống của Vietravel. Do đó, quý khách có thể hoàn toàn an tâm rằng thông tin thẻ của Quý khách sẽ được bảo đảm an toàn tuyệt đối tại hệ thống của <em> <strong>MasterCard</strong></em> và Ngân hàng Ngoại Thương Việt Nam (<strong>Vietcombank</strong>).</span></p>
+
+                        <p style="text-align:justify"><span style="font-family:Times New Roman,Times,serif">Hiện tại hệ thống www.travel.com.vn chấp nhận cho Quý khách thanh toán bằng một trong các loại thẻ sau: <strong>VISA</strong> (Credit hoặc Debit), <em> <strong>MasterCard</strong></em> (Credit), <strong>Diners Clup International</strong> (Credit), <strong>JCB</strong> (Credit) và <strong>American Express</strong> (Credit) của bất kỳ ngân hàng nào.</span></p>
+
+                        <hr>
+                        <p style="margin-right:6px; text-align:justify"><span style="color:#e74c3c"><span style="font-size:16px"><span style="font-family:Times New Roman,Times,serif"><strong><img alt="mail" src="https://travel.hivietravel.vn/Content/plugins/ckeditor/plugins/smiley/images/envelope.png" style="height:23px; width:23px" title="mail">&nbsp;</strong></span></span></span><span style="color:#ff0000"><span style="font-size:18px"><span style="font-family:Times New Roman,Times,serif"><strong>ƯU ĐÃI THẺ JCB TRONG TAY – BAY NGAY ĐẾN NHẬT</strong></span></span></span></p>
+
+                        <p style="margin-right:6px; text-align:justify"><span style="font-size:16px"><span style="font-family:Times New Roman,Times,serif">Thời gian: <strong>từ 15/02/2024 đến 31/05/2024</strong> hoặc đến hết ngân sách <span style="color:#ff0000">/Có điền Form/</span></span></span></p>
+
+                        <p style="margin-right:6px; text-align:justify"><span style="color:#ff0000"><span style="font-size:16px"><span style="font-family:Times New Roman,Times,serif">Trường hợp thanh toán Online vui lòng liên hệ nhân viên tư vấn của Vietravel để được tư vấn quyền lợi ưu đãi.</span></span></span></p>
+
+                        <ul>
+
+                          <li style="text-align:justify">
+                            <span style="font-size:16px">
+                              <span style="font-family:Times New Roman,Times,serif">
+                                <strong><span style="color:#ff0000">Chương trình 01: Giảm 1.500.000 Đ</span><span style="color:#c00000"> </span></strong>cho tour trọn gói <strong>Nhật Bản có giá bán từ 20.000.000 Đ đến dưới 40.000.000 Đ.</strong>
+                              </span>
+                            </span>
+                          </li>
+
+                          <li style="text-align:justify">
+                            <span style="font-size:16px">
+                              <span style="font-family:Times New Roman,Times,serif">
+                                <span style="color:#ff0000"><strong>Chương trình 02: Giảm 3.000.000 Đ</strong>
+                                </span>
+                                <span style="color:#e74c3c"><strong> </strong></span>cho tour trọn gói <strong>Nhật Bản có giá bán từ 40.000.000 Đ.</strong>
+                              </span>
+                            </span>
+                          </li>
+
+                          <li style="text-align:justify">
+                            <span style="font-size:16px">
+                              <span style="font-family:Times New Roman,Times,serif">
+                                <span style="color:#ff0000"><strong>Chương trình 03: Tặng Vali du lịch cao cấp</strong></span>
+                                <span style="color:#e74c3c"><strong> </strong></span> cho chủ thẻ JCB phát hành mới và phát sinh thanh toán <strong>tour du lịch trọn gói Nhật.</strong>
+                              </span>
+                            </span>
+                          </li>
+
+                          <li style="text-align:justify">
+                            <span style="font-size:16px">
+                              <span style="font-family:Times New Roman,Times,serif">
+                                <span style="color:#ff0000"><strong>Chương trình 04: Giảm 500.000 Đ</strong></span>
+                                <span style="color:#e74c3c"><strong> </strong></span>cho tour trọn gói <strong>(trừ Nhật) giá bán từ 15.000.000đ trở lên</strong>.
+                              </span>
+                            </span>
+                          </li>
+
+                        </ul>
+
+                        <p style="margin-right:6px; text-align:justify">
+                          <span style="font-size:16px">
+                            <span style="font-family:Times New Roman,Times,serif">Đối tượng áp dụng: Khách hàng phát sinh thanh toán Tour trọn gói bằng Thẻ JCB tại&nbsp;</span>
+                          </span>
+                          <span style="font-size:16px">
+                            <span style="font-family:Times New Roman,Times,serif">Vietravel tại các Văn phòng Vietravel hoặc trên trang bán travel.com.vn</span>
+                          </span>
+                        </p>
+
+                        <p style="margin-right:6px; text-align:justify">
+                          <span style="font-size:16px">
+                            <span style="font-family:Times New Roman,Times,serif">
+                            <u>Lưu ý:</u>
+                            </span>
+                          </span>
+                        </p>
+
+                        <ul>
+                          <li style="text-align:left"><span style="font-size:16px"><span style="font-family:Times New Roman,Times,serif">Chương trình 1,2 và 3: áp dụng cho thị trường Nhật.</span></span></li>
+                          <li style="text-align:left"><span style="font-size:16px"><span style="font-family:Times New Roman,Times,serif">Chương trình 1 và 2: không áp dụng đồng thời.</span></span></li>
+                          <li style="text-align:left"><span style="font-size:16px"><span style="font-family:Times New Roman,Times,serif">Chương trình 3: áp dụng đồng thời chương trình 1 hoặc 2.</span></span></li>
+                          <li style="text-align:left"><span style="font-size:16px"><span style="font-family:Times New Roman,Times,serif">Chương trình 3: thời gian phát hành thẻ &amp; thanh toán tính từ 15/02/2024 đến 31/05/2024. Nhận diện thời gian mở thẻ, kích hoạt thẻ qua các kênh: tin nhắn/ app ngân hàng/ email.</span></span></li>
+                          <li style="text-align:left"><span style="font-size:16px"><span style="font-family:Times New Roman,Times,serif">Chương trình 4: áp dụng thị trường còn lại (trừ Nhật).</span></span></li>
+                          <li style="text-align:left"><span style="font-size:16px"><span style="font-family:Times New Roman,Times,serif">Mỗi chủ thẻ hưởng tối đa một lần ưu đãi trong suốt thời gian diễn ra chương trình</span></span>.</li>
+                        </ul>
+
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+                <div class="payments">
+
+                  <div class="payment-item">
+                    <div class="pm-head">
+                      <div class="pm-head-icon">
+                        <i class='bx bx-qr-scan' ></i>
+                        <h4>Thanh toán VNPAY</h4>
+                      </div>
+                      <input #VNPay class="check" type="radio" name="payment-type" value="Thanh toán qua VNPay">
+                    </div>
+                    <div class="pm-des">
+                      <div>
+                        <div>
+                          &nbsp;
+                        </div>
+                        <div>
+                          Đây là cổng thanh toán cho phép Quý khách thanh toán từ tài khoản ngân hàng thông qua hình thức quét mã QR trên tính năng QR Pay trong ứng dụng Mobile Banking của các Ngân hàng.
+                        </div>
+                        <div>
+                          &nbsp;
+                        </div>
+                        <div>
+                          Sau khi Thông tin đặt tour của Quý khách được xác nhận, hệ thống sẽ hiển thị mã QR để Quý khách dùng thiết bị di động quét mã thanh toán.&nbsp;
+                        </div>
+                        <div>
+                          &nbsp;
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="payment-item">
+                    <div class="pm-head">
+                      <div class="pm-head-icon">
+                        <img style="width: 24px; height: 24px; border-radius: 2px; margin-right: 1rem;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGds0dVYCpsArM9iAbJ8GNMQIHWR_M7vECi27mUxg1cQ&s" alt="">
+                        <h4>Thanh toán bằng Momo</h4>
+                      </div>
+                      <input #momo class="check" type="radio" name="payment-type" value="Thanh toán qua Momo">
+                    </div>
+                    <div class="pm-des">
+                      <div>
+                        <div>
+                          Nhập mã<strong><span style="color:#a50064;">MOMOTRAVEL100, MOMOTRAVEL200, MOMOTRAVEL400</span></strong> để nhận ưu đãi lên đến <strong>400k</strong>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+
+              <div class="terms">
+                <h3>Điều khoản bắt buộc khi đăng ký online</h3>
+                <div class="term-content">
+                  <div>
+                    <p style="text-align:center"><span style="color:#444444"><strong>NỘI DUNG ĐỌC, HIỂU VÀ ĐỒNG Ý TRƯỚC KHI ĐĂNG KÝ ONLINE&nbsp;CHƯƠNG TRÌNH DU LỊCH TRONG NƯỚC</strong></span></p>
+
+                    <p style="text-align:justify"><span style="color:#444444"><strong>Tôi đã hiểu rõ và đồng ý với các nội dung như sau:</strong></span></p>
+
+                    <p style="text-align:justify"><span style="color:#444444"><strong>I. GIÁ VÉ DU LỊCH</strong></span></p>
+
+                    <p style="text-align:justify"><span style="color:#444444">Giá vé du lịch được tính theo tiền Đồng (Việt Nam - VNĐ). Trường hợp khách thanh toán bằng USD sẽ được quy đổi ra VNĐ theo tỉ giá của ngân hàng Đầu Tư và Phát Triển Việt Nam - Chi nhánh TP.HCM tại thời điểm thanh toán.</span></p>
+
+                    <p style="text-align:justify"><span style="color:#444444">Giá vé chỉ bao gồm những khoản được liệt kê một cách rõ ràng trong phần “Bao gồm” trong các chương trình du lịch. Vietravel không có nghĩa vụ thanh toán bất cứ chi phí nào không nằm trong phần “Bao gồm”.</span></p>
+
+                    <p style="text-align:justify"><span style="color:#444444"><strong>II. GIÁ DÀNH CHO TRẺ EM</strong></span></p>
+
+                    <p style="text-align:justify"><span style="color:#444444">- Trẻ em dưới 5 tuổi:&nbsp; không thu phí dịch vụ, bố mẹ tự lo cho bé và thanh toán các chi phí phát sinh (đối với các dịch vụ tính phí theo chiều cao…). Hai người lớn chỉ được kèm 1 trẻ em dưới 5 tuổi, trẻ em thứ 2 sẽ đóng phí theo qui định dành cho độ tuổi từ 5 đến dưới 12 tuổi và phụ thu phòng đơn. Vé máy bay, tàu hỏa, phương tiện vận chuyển công cộng mua vé theo qui định của các đơn vị vận chuyển (nếu có)</span></p>
+
+                    <p style="text-align:justify"><span style="color:#444444">- Trẻ em từ 5 tuổi đến dưới 12 tuổi:&nbsp; 50% giá tour người lớn đối với tuyến xe, 75% giá tour người lớn đối với tuyến có vé máy bay (không có chế độ giường riêng). Hai người lớn chỉ được kèm 1 trẻ em từ 5 - dưới 12 tuổi, em thứ hai trở lên phải mua 1 suất giường đơn.</span></p>
+
+                    <p style="text-align:justify"><span style="color:#444444">- Trẻ em từ 12 tuổi trở lên: mua một vé như người lớn.</span></p>
+
+                    <p style="text-align:justify"><span style="color:#444444"><strong>III. THANH TOÁN</strong></span></p>
+
+                    <p style="text-align:justify"><span style="color:#444444">Khi thanh toán, Quý khách vui lòng cung cấp đầy đủ thông tin và đặt cọc ít nhất 50% tổng số tiền tour để giữ chỗ</span></p>
+
+                    <p style="text-align:justify"><span style="color:#444444">Thanh toán bằng tiền mặt hoặc chuyển khoản tới tài khoản ngân hàng của Vietravel.</span></p>
+
+                    <div style="text-align:justify">
+                    <div style="background:#eeeeee; border:1px solid #cccccc; padding:5px 10px">Tên Tài Khoản : Công ty CP Du lịch và Tiếp thị GTVT Việt Nam – Vietravel</div>
+
+                    <div style="background:#eeeeee; border:1px solid #cccccc; padding:5px 10px">Tên tài khoản viết tắt : VIETRAVEL</div>
+
+                    <div style="background:#eeeeee; border:1px solid #cccccc; padding:5px 10px">Số Tài khoản : <strong>111 6977 27979</strong></div>
+
+                    <div style="background:#eeeeee; border:1px solid #cccccc; padding:5px 10px">Ngân hàng : Vietinbank - Chi nhánh 7</div>
+                    </div>
+
+                    <p style="text-align:justify"><span style="color:#444444">Việc thanh toán được xem là hoàn tất khi Vietravel nhận được đủ tiền vé du lịch trước lúc khởi hành hoặc theo hợp đồng thỏa thuận giữa hai bên. Bất kỳ sự thanh toán chậm trễ dẫn đến việc hủy dịch vụ không thuộc trách nhiệm của Vietravel.</span></p>
+
+                    <p style="text-align:justify"><span style="color:#444444">Khách hàng có nhu cầu xuất hóa đơn, vui lòng cung cấp thông tin xuất hóa đơn ngay tại thời điểm đăng ký. Vietravel có trách nhiệm xuất hóa đơn cho khách hàng trong vòng 07 ngày sau khi tour kết thúc.&nbsp;&nbsp;</span></p>
+
+                    <p style="text-align:justify"><span style="color:#444444">Khi thực hiện việc chuyển khoản, Quý khách vui lòng ghi rõ tên họ, số điện thoại và nội dung chuyển khoản cho chương trình du lịch cụ thể đã được Quý khách chọn đăng ký.</span></p>
+
+                    <p style="text-align:justify"><span style="color:#444444">Sau khi thực hiện việc chuyển khoản, Quý khách vui lòng gửi ủy nhiệm chi về Công ty Vietravel theo địa chỉ email sales&#64;vietravel.com và liên hệ với nhân viên phụ trách tuyến để nhận được Vé du lịch chính thức từ Công ty Vietravel.</span></p>
+
+                    <p style="text-align:justify"><span style="color:#444444">*<u>Lưu ý</u>: Quý khách vui lòng điền đầy đủ thông tin theo yêu cầu khi đăng ký tour qua mạng bán travel.com.vn và chịu trách nhiệm về tính chính xác của những thông tin đã cung cấp. Vietravel sẽ sử dụng những thông tin này để cung cấp cho các đối tác dịch vụ và tiến hành các thủ tục cần thiết cho chuyến đi. Nếu có sự khác biệt giữa thông tin mà Quý khách cung cấp so với thực tế dẫn đến việc phải điều chỉnh thì Quý khách vui lòng thanh toán các khoản chi phí phát sinh (nếu có).</span></p>
+
+                    <p style="text-align:justify"><span style="color:#444444"><strong>IV. HỦY VÉ VÀ PHÍ HỦY VÉ DU LỊCH</strong></span></p>
+
+                    <p style="text-align:justify"><span style="color:#444444"><strong>1. Trường hợp bị hủy bỏ do Vietravel:</strong></span></p>
+
+                    <p style="text-align:justify"><span style="color:#444444">Nếu Vietravel không thực hiện được chuyến du lịch, Vietravel phải báo ngay cho khách hàng biết và thanh toán lại cho khách hàng toàn bộ số tiền khách hàng đã đóng trong vòng 3 ngày kể từ lúc việc thông báo hủy chuyến du lịch bằng tiền mặt hoặc chuyển khoản.</span></p>
+
+                    <p style="text-align:justify"><span style="color:#444444"><strong>2. Trường hợp bị hủy bỏ do khách hàng:</strong></span></p>
+
+                    <p style="text-align:justify"><span style="color:#444444">Sau khi đóng tiền, nếu Quý khách muốn chuyển/hủy tour xin vui lòng mang Vé Du Lịch đến văn phòng đăng ký tour để làm thủ tục chuyển/hủy tour và chịu mất phí theo quy định của Vietravel. Không giải quyết các trường hợp liên hệ chuyển/hủy tour qua điện thoại.</span></p>
+
+                    <p style="text-align:justify"><span style="color:#444444"><strong>• Đối với ngày thường:</strong></span></p>
+
+                    <div style="text-align:justify"><span style="color:#444444">- Được chuyển sang các tuyến du lịch khác trước ngày khởi&nbsp; hành 20 ngày : Không mất chi phí.&nbsp;</span></div>
+
+                    <p style="text-align:justify"><span style="color:#444444">- Hủy hoặc chuyển sang các chuyến du lịch khác ngay sau khi đăng ký đến từ 15 - 19 ngày trước ngày khởi hành: Chi phí chuyển/hủy tour: 50% tiền cọc tour.</span></p>
+
+                    <p style="text-align:justify"><span style="color:#444444"><strong>• Đối với ngày lễ, Tết:&nbsp; </strong></span></p>
+
+                    <div style="text-align:justify"><span style="color:#444444">- Được chuyển sang các tuyến du lịch khác trước ngày khởi &nbsp;hành 30 ngày : Không mất chi phí.</span></div>
+
+                    <p style="text-align:justify"><span style="color:#444444">- Hủy hoặc chuyển sang các chuyến du lịch khác ngay sau khi đăng ký đến từ 25 - 29 ngày trước ngày khởi hành: Chi phí chuyển/hủy tour: 50% tiền cọc tour.</span></p>
+
+                    <p style="text-align:justify"><span style="color:#444444">* Các tour ngày lễ, Tết là các tour có thời gian diễn ra rơi vào một trong các ngày lễ, Tết theo quy định.</span></p>
+
+                    <p style="text-align:justify"><span style="color:#444444">* Thời gian hủy tour được tính cho ngày làm việc, không tính Thứ 7, Chủ Nhật và các ngày lễ, Tết.</span></p>
+
+                    <p style="text-align:justify"><span style="color:#444444">* Khách hàng hủy Vé du lịch trong thời điểm ngày thường và lễ Tết theo đúng những quy định trên, trong trường hợp khách thanh toán trực tuyến, nếu hủy Vé du lịch khách hàng sẽ chịu toàn bộ phí ngân hàng cho việc thanh toán tiền Vé du lịch. Việc hoàn trả tiền cho khách sẽ được Vietravel thực hiện ngay sau khi ngân hàng thông báo tiền đã vào tài khoản của Vietravel.</span></p>
+
+                    <p style="text-align:justify"><span style="color:#444444"><strong>3. Trường hợp bất khả kháng:</strong></span></p>
+
+                    <p style="text-align:justify"><span style="color:#444444">Nếu chương trình du lịch bị hủy bỏ hoặc thay đổi bởi một trong hai bên vì một lý do bất khả kháng (hỏa hoạn, thời tiết, tai nạn, thiên tai, chiến tranh, dịch bệnh, hoãn, dời, hủy chuyến hoặc thay đổi khác của các phương tiện vận chuyển công cộng hoặc các sự kiến bất khả kháng khác theo quy định pháp luật…), thì hai bên sẽ không chịu bất kỳ nghĩa vụ bồi hoàn các tổn thất đã xảy ra và không chịu bất kỳ trách nhiệm pháp lý nào. Tuy nhiên mỗi bên có trách nhiệm cố gắng tối đa để giúp đỡ bên bị thiệt hại nhằm giảm thiểu các tổn thất gây ra vì lý do bất khả kháng. Thời gian hoàn tiền dịch vụ do hủy tour vì trường hợp bất khả kháng sẽ được hoàn tất trong vòng 60 – 90 ngày phụ thuộc điều kiện các đối tác cung ứng dịch vụ.</span></p>
+
+                    <p style="text-align:justify"><span style="color:#444444"><strong>4. Thay đổi lộ trình:&nbsp; </strong></span></p>
+
+                    <p style="text-align:justify"><span style="color:#444444">Tùy theo tình hình thực tế, Vietravel giữ quyền thay đổi lộ trình, sắp xếp lại thứ tự các điểm tham quan hoặc hủy bỏ chuyến đi du lịch bất cứ lúc nào mà Vietravel thấy cần thiết vì sự thuận tiện hoặc an toàn cho khách hàng.</span></p>
+
+                    <p style="text-align:justify"><span style="color:#444444"><strong>V. NHỮNG YÊU CẦU ĐẶC BIỆT TRONG CHUYẾN DU LỊCH</strong></span></p>
+
+                    <p style="text-align:justify"><span style="color:#444444">Các yêu cầu đặc biệt của Quý khách phải được báo trước cho Vietravel ngay tại thời điểm đăng ký. Vietravel sẽ cố gắng đáp ứng những yêu cầu này trong khả năng của mình song sẽ không chịu trách nhiệm về bất kỳ sự từ chối cung cấp dịch vụ từ phía các nhà vận chuyển, khách sạn, nhà hàng và các nhà cung cấp dịch vụ độc lập khác.</span></p>
+
+                    <p style="text-align:justify"><span style="color:#444444"><strong>VI. KHÁCH SẠN</strong></span></p>
+
+                    <p style="text-align:justify"><span style="color:#444444">Khách sạn được cung cấp trên cơ sở những phòng có hai giường đơn (TWN) hoặc một giường đôi (DBL) tùy theo cơ cấu phòng của các khách sạn. Khách sạn do Vietravel đặt cho các chương trình tham quan có tiêu chuẩn tương ứng với các mức giá vé mà khách chọn khi đăng ký đi du lịch. Nếu cần thiết thay đổi về bất kỳ lý do nào, khách sạn thay thế sẽ tương đương với tiêu chuẩn của khách sạn ban đầu và sẽ được báo cho du khách trước khi khởi hành. Những yêu cầu đặc biệt của khách hàng nếu thông báo trước cho Vietravel sẽ được đáp ứng tùy theo khả năng cung cấp của khách sạn và khách hàng phải trả thêm tiền đối với các yêu cầu này (nếu có). Vietravel có quyền không đáp ứng những yêu cầu này nếu khách sạn từ chối cung cấp dịch vụ. Thời gian nhận phòng theo qui định tại các khách sạn là sau 14:00 và phải trả phòng trước 12:00. Đối với các trường hợp khách lưu trú tại hệ thống khách sạn/Resort 5 sao (Vinpearl, FLC, Grand Ho Tram Strip…) tuân thủ theo điều kiện hủy phạt của khách sạn/Resort cho từng thời điểm.</span></p>
+
+                    <p style="text-align:justify"><span style="color:#444444"><strong>VII. VẬN CHUYỂN</strong></span></p>
+
+                    <p style="text-align:justify"><span style="color:#444444">Phương tiện vận chuyển tùy thuộc theo từng chương trình du lịch.</span></p>
+
+                    <p style="text-align:justify"><span style="color:#444444">Với chương trình đi bằng xe: xe máy lạnh (4, 7, 15, 25, 35, 45 chỗ) sẽ được Vietravel sắp xếp tùy theo số lượng khách từng đoàn, phục vụ suốt chương trình tham quan.</span></p>
+
+                    <p style="text-align:justify"><span style="color:#444444">Với chương trình đi bằng xe lửa - máy bay - tàu cánh ngầm (phương tiện vận chuyển công cộng), trong một số chương trình các nhà cung cấp dịch vụ có thể thay đổi giờ khởi hành mà không báo trước, việc thay đổi này sẽ được Vietravel thông báo cho khách hàng nếu thời gian cho phép.</span></p>
+
+                    <p style="text-align:justify"><span style="color:#444444">Vietravel không chịu trách nhiệm bồi hoàn và trách nhiệm pháp lý với những thiệt hại về vật chất lẫn tinh thần do việc chậm trễ, thay đổi giờ giấc khởi hành của các phương tiện vận chuyển công cộng hoặc sự chậm trễ do chính hành khách gây ra. Vietravel chỉ thực hiện hành vi giúp đỡ để giảm bớt tổn thất cho hành khách.</span></p>
+
+                    <p style="text-align:justify"><span style="color:#444444"><strong>VIII. HÀNH LÝ</strong></span></p>
+
+                    <p style="text-align:justify"><span style="color:#444444">Hành lý gọn nhẹ, với các chương trình sử dụng dịch vụ hàng không, hành lý miễn cước sẽ do các hãng hàng không qui định. Vietravel không chịu trách nhiệm về sự thất lạc, hư hỏng hành lý hoặc bất kỳ vật dụng gì của du khách trong suốt chuyến đi, du khách tự bảo quản hành lý của mình. Nếu khách hàng bị mất hay thất lạc hành lý thì Vietravel sẽ giúp hành khách liên lạc và khai báo với các bộ phận liên quan truy tìm hành lý bị mất hay thất lạc. Việc bồi thường hành lý bị mất hay thất lạc sẽ theo qui định của các đơn vị cung cấp dịch vụ hoặc các đơn vị bảo hiểm (nếu có).</span></p>
+
+                    <p style="text-align:justify"><span style="color:#444444"><strong>IX. BẢO HIỂM DU LỊCH</strong></span></p>
+
+                    <p style="text-align:justify"><span style="color:#444444">Giá dịch vụ du lịch trọn gói đã bao gồm bảo hiểm du lịch trong nước với mức đền bù cao nhất là 120.000.000 VNĐ/khách Việt Nam/vụ cho nhân mạng và 12.000.000 VNĐ/khách Việt Nam/vụ cho hành lý.</span></p>
+
+                    <p style="text-align:justify"><span style="color:#444444">Điều kiện, điều khoản bảo hiểm: Theo quy tắc bảo hiểm khách du lịch trong nước QĐ số: 001321/2006 – BM/BHCN.</span></p>
+
+                    <p style="text-align:justify"><span style="color:#444444"><strong>Lưu ý: </strong>Vé du lịch cùng các văn bản kèm theo (biên nhận tour, chương trình tour) được xem như là bộ Hợp đồng lữ hành có giá trị ràng buộc với các bên và được lập thành 2 bản, mỗi bên giữ một bản, có giá trị pháp lý như nhau. Do tính chất tour dành cho khách lẻ (cá nhân / nhóm gia đình) nên khách hàng (người đăng ký và người đi cùng nhóm) được coi là chấp thuận toàn bộ nội dung trong Vé du lịch và các văn bản kèm theo kể từ thời điểm đặt cọc, không phụ thuộc vào việc khách hàng có ký tên trên Vé du lịch, biên nhận tour hay chương trình tour hay không.</span></p>
+
+                    <div style="text-align:justify"><span style="color:#444444">Trong quá trình thực hiện, nếu xảy ra tranh chấp sẽ được giải quyết trên cơ sở thương lượng trong thời hạn 30 ngày kể từ ngày một trong hai bên đưa tranh chấp ra thương lượng. Hết thời hạn này nếu tranh chấp không được giải quyết hoặc một trong hai bên không đồng ý với kết quả thương lượng thì có quyền đưa tranh chấp ra giải quyết tại Tòa án thẩm quyền.</span></div>
+
+                  </div>
+                </div>
+                <label class="checker">Tôi đồng ý với các điều kiện trên
+                  <input #dongydieukhoan type="checkbox" id="DieuKien">
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+            </div>
+<!-- ========================================================================== -->
+
+          </div>
+
+          <div class="col-md-4 col-12 right">
+
+            <div class="box-support">
+              <label>Quý khách cần hỗ trợ?</label>
+              <div class="group-contact" style="margin-top: 10px;">
+                <a href="https://webcall.talking.vn/frame-click-to-call/new?code=tCEZl1-MKPuA6JU-czVAScCb0pPkHmPt" target="_blank" class="phone">
+                  <i class='bx bx-phone'></i>
+                  <p>Gọi miễn phí <br>qua internet</p>
+                </a>
+                <a href="mailto:info@vietravel.com" class="mail">
+                  <i class='bx bx-envelope' ></i>
+                  <p>Gửi yêu cầu <br>hỗ trợ ngay</p>
+                </a>
+              </div>
+            </div>
+
+            <div class="group-checkout">
+
+              <h3>Tóm tắt chuyến đi</h3>
+              <!-- <span>Dịch vụ tùy chọn <b>Bay Vietnam Airlines - Khách sạn 5* Hôtel de la Coupole - MGallery</b></span>
+              <p class="package-title">Tour trọn gói <span> (8 khách)</span></p> -->
+
+              <div class="product">
+                <div class="product-image">
+                  <img src="{{tour?.tour?.img}}" class="img-fluid" alt="image">
+                </div>
+                <div class="product-content">
+                  <p class="title">{{tour?.tour?.tour_name}}</p>
+                </div>
+              </div>
+
+              <div class="go-tour">
+                <div class="start">
+                  <i class='bx bx-current-location'></i>
+                  <div class="start-content">
+                    <h4 >Bắt đầu chuyến đi</h4>
+                    <p class="time">{{tour?.tour?.start_date}}</p>
+                    <p class="from"></p>
+                  </div>
+                </div>
+                <div class="end">
+                  <i class='bx bx-current-location'></i>
+                  <div class="start-content">
+                    <h4 style="margin-bottom: 0px;">Kết thúc chuyến đi</h4>
+                    <p class="time">{{tour?.tour?.end_date}}</p>
+                    <p class="from"></p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="detail">
+
+                <table>
+                  <thead>
+                    <tr>
+                      <th class="l1" style="text-align: left;">
+                        <i class="bx bx-group" id="AmoutPerson"></i>
+                        Hành khách
+                      </th>
+                      <th class="l2  text-right">
+                        <span class="total-booking">{{tour?.tour?.price}}</span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                    <tr class="detail">
+                      <td>Người lớn</td>
+                      <td class="t-price text-right">{{adultsArray.length}} x {{tour?.tour?.price}}</td>
+                    </tr>
+
+                    <tr class="detail" *ngIf="childrenArray.length > 0">
+                      <td>Trẻ em</td>
+                      <td class="t-price text-right">{{childrenArray.length}} x {{tour?.tour?.price}}</td>
+                    </tr>
+
+                    <tr class="detail"  *ngIf="young_childsArray.length > 0">
+                      <td>Trẻ nhỏ</td>
+                      <td class="t-price text-right">{{young_childsArray.length}} x {{tour?.tour?.price}}</td>
+                    </tr>
+
+                    <tr class="detail" *ngIf="babysArray.length > 0">
+                      <td>Em bé</td>
+                      <td class="t-price text-right">{{babysArray.length}} x {{tour?.tour?.price}}</td>
+                    </tr>
+
+                    <!-- <tr class="pt detail">
+                      <td>Phụ thu phòng đơn</td>
+                      <td class="t-price text-right">8.200.000&nbsp;₫</td>
+                    </tr> -->
+
+                    <tr class="total">
+                      <td>Tổng tiền </td>
+                      <td class="t-price text-right">{{this.total}}</td>
+                    </tr>
+
+                  </tbody>
+                </table>
+
+                <button class="btn btn-primary btn-order"  (click)="paychangePage(page)">Đặt ngay</button>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+</div>

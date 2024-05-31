@@ -1,0 +1,115 @@
+<main class="login">
+
+  <div class="wrapper">
+
+    <div class="row form-wrap">
+
+      <div class="col-12 right">
+
+        <div class="form-signin">
+
+          <div class="text-center heading mb-4">
+            <h5>Chào mừng Quý khách đến với</h5>
+            <h1 class="fw-bold m-0">WONVEL.COM</h1>
+          </div>
+
+          <div class="card bg-white">
+
+            <div class="d-flex tab">
+              <button class="w-50 p-3 signin-btn h5 mb-0 text-center fw-bold">Đăng nhập</button>
+              <a routerLink="/singup" class="w-50 p-3 signup-btn h5 mb-0 text-center fw-bold">Đăng ký</a>
+            </div>
+
+            <div class="box-loading" hidden="" style="display: none;">
+              <div class="col-sm-12 col-md-auto col-lg-auto">
+              <div class="loading animate__animated animate__fadeIn ">
+                <img loading="lazy" alt="Vietravel" src="/images/order/plane_loading.gif" width="120" height="45" style="position: relative; left: -18px;">
+                <div class="loading03 ">
+                  <span>V</span><span>I</span><span>E</span><span>T</span><span>R</span><span>A</span><span>V</span><span>E</span><span>L</span></div><br>
+                  <span class="desc">Mạng bán tour trực tuyến đầu tiên tại Việt Nam.</span>
+                </div>
+              </div>
+            </div>
+
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+              <div class="mb-3">
+                <label class="form-label fw-bold">Email tài khoản</label>
+                <span class="text-danger">*</span>
+                <input formControlName="email" #email id="Email" class="form-control" name="Email" type="text" placeholder="Tài khoản" value="" style="margin-top: 10px;"
+                [ngStyle]="{'border-color': loginForm.controls['email'].invalid && loginForm.controls['email'].touched || isUnauthorizedError ? 'red' : null}">
+                <div *ngIf="loginForm.controls['email'].invalid && loginForm.controls['email'].touched" class="alert alert-danger"  style="color: red; margin-top: 5px;">
+                  Vui lòng nhập email.
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-bold">Mật khẩu</label>
+                  <span class="text-danger">*</span>
+                  <input formControlName="pass" #pass id="Password" class="form-control" name="Password" type="password" placeholder="Mật khẩu" value="" style="margin-top: 10px;"
+                  [ngStyle]="{'border-color': loginForm.controls['pass'].invalid && loginForm.controls['pass'].touched || isUnauthorizedError ? 'red' : null}">
+                  <div *ngIf="loginForm.controls['pass'].invalid && loginForm.controls['pass'].touched" class="alert alert-danger" style="color: red; margin-top: 5px">
+                    Vui lòng nhập mật khẩu.
+                  </div>
+                  <div class="text-end py-2">
+                    <a rel="nofollow noreferrer" target="_blank">Lấy lại mật khẩu</a>
+                </div>
+              </div>
+
+              <div class="mb-3 text-center"></div>
+
+              <!-- <div class="w-100">
+                <div class="mb-3 form-group">
+                  <div>
+                    <div>
+                      <div style="width: 304px; height: 78px;">
+                        <div>
+                          <iframe title="reCAPTCHA" width="304" height="78" role="presentation" name="a-l4pka7137x0r" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox allow-storage-access-by-user-activation" src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6LcezicTAAAAAIbBsNL6IS14WAowVVhd_iL0hVNf&amp;co=aHR0cHM6Ly90cmF2ZWwuY29tLnZuOjQ0Mw..&amp;hl=vi&amp;type=image&amp;v=joHA60MeME-PNviL59xVH9zs&amp;theme=light&amp;size=normal&amp;badge=bottomright&amp;cb=xong8hk3yasp"></iframe>
+                        </div>
+                        <textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea>
+                      </div>
+                      <iframe style="display: none;"></iframe>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+
+              <p style="color: red;">
+                {{errLg}}
+              </p>
+
+              <button type="submit" id="btndangnhap" class="btn btn-primary w-100 py-3 fw-bold">
+                Đăng nhập
+                <i class="fas fa-sign-in-alt" aria-hidden="true"></i>
+              </button>
+            </form>
+
+            <div class="form-divider">Hoặc</div>
+            <div class="add-on">
+              <div id="btnfacebook" class="add-on-btn facebook">
+                <span style="transition: opacity 0.5s ease 0s;">
+                  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+                  <button type="button" class="btn btn-link text-white text-decoration-none metro">
+                    <i class="fa fa-facebook">
+                    </i> Tiếp tục với Facebook
+                  </button>
+               </span>
+              </div>
+              <div id="btngoogle" class="add-on-btn google">
+                <button id="customBtn" class="btn btn-link text-white text-decoration-none">
+                  <i class="fab fa-google-plus-g"></i> Tiếp tục với Google
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</main>

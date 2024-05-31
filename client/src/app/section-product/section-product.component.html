@@ -1,0 +1,55 @@
+<div class="container">
+  <h2 class="titlle-section">
+    Tour đang giảm giá hot
+  </h2>
+
+  <div class="contai-product">
+
+    <div class="col-col" *ngFor="let tour of tourdisscount">
+      <div class="card-item">
+        <div class="box-top">
+          <div class="box-img">
+            <a [routerLink]="['/detail', tour.id]">
+              <img src="{{tour.img}}" alt="">
+            </a>
+          </div>
+        </div>
+        <div class="box-center">
+          <p class="p-1">{{tour.start_date}} - {{tour.timeday}}</p>
+          <p class="p-2">
+            <a [routerLink]="['/detail', tour.id]">
+              {{tour.tour_name}}
+            </a>
+          </p>
+          <div class="p-3">
+            <div>Mã tour:</div>
+            <div style="display: flex; align-items: center;">
+              <i class='bx bxs-coupon'></i>
+              <p style="margin-bottom: 0;">{{tour.code_tour}}</p>
+            </div>
+          </div>
+        </div>
+        <p class="box-bot padding-1rem" >
+          Nơi khởi hành: {{tour.departure_location}}
+        </p>
+        <div class="box-last padding-1rem">
+          <div class="tour-item__price__wrapper">
+            <div class="tour-item__price--old">
+              Giá <span class="tour-item__price--old__number">{{tour.price}}</span>
+            </div>
+            <div class="tour-item__price--current">
+              <span class="tour-item__price--current__number pe-2 mb-0">{{tour.discount_price}}</span>
+              <span class="tour-item__price--current__discount small p-1">{{tour.discount_percentage}}% GIẢM</span>
+            </div>
+            <div class="tour-item__price__timer py-2" [routerLink]="['/inforpm', tour.id]">
+              <span>Đặt ngay</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+

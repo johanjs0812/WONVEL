@@ -1,0 +1,193 @@
+<div class="detail-page">
+
+  <div class="container">
+    <div class="row">
+      <ul class="breadcrumbs__wrapper d-flex align-items-center">
+        <li>
+          <a href="" style="margin-left: 10px;">
+            <span>Du lịch</span>
+          </a>
+          »
+        </li>
+
+        <li>
+          <a href="" style="margin-left: 10px;">
+            <span>Tour {{tour.destination.provinces}}</span>
+          </a>
+          »
+        </li>
+
+        <li>
+          <a style="margin-left: 10px;">
+            <span>{{tour.tour.tour_name}}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <br><br>
+
+  <div class="container">
+    <div style="margin-bottom: 12px;">
+      <div class="p-3">
+        <div style="display: flex; align-items: center;">
+          <i class='bx bxs-coupon' style="margin-right: 15px; color: #4d4aef; font-size: 16px;"></i>
+          <p style="color: #4d4aef; font-size: 13px;">{{tour.tour.code_tour}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="align-items: center;">
+      <div class="left-head">
+        <h1 style="margin: 0;" class="title">
+          {{tour.tour.tour_name}}
+        </h1>
+
+        <!-- <div class="short-rating">
+          <div class="s-rate">
+            <span>9</span>
+            <div class="s-comment">Tuyệt vời<p>358 quan tâm</p></div>
+          </div>
+          <div class="s-wishlist">
+            <i class="fas fa-heart"></i>
+            <label> 126</label>
+          </div>
+        </div> -->
+
+      </div>
+
+      <div class="right-head">
+        <div class="group-price">
+          <div class="sale-price">
+            <p><span class="price">{{tour.tour.price}}</span>/ khách</p></div>
+        </div>
+
+        <div class="group-add-cart">
+          <a title="Đặt ngay" [routerLink]="['/inforpm', tour.tour.id]" class="add-to-cart">
+            <i class='bx bx-cart'></i>Đặt ngay
+          </a>
+          <a href="#" class="add-to-group">Liên hệ tư vấn</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <br>
+  <br>
+
+  <div class="container">
+    <div class="box-img">
+      <img src="{{tour.tour.img}}" alt="">
+    </div>
+  </div>
+
+  <br>
+
+  <div class="container">
+    <div class="row">
+      <div class="left-dt-op">
+        <div class="box-order">
+          <div class="time">
+            <p>Khởi hành <b> {{tour.tour.start_date}}</b></p>
+            <!-- <p>Tập trung <b>04:05 ngày 25/05/2024</b></p> -->
+            <p>Thời gian <b>{{timeday}}</b></p>
+            <p>Nơi khởi hành <b>{{tour.tour.departure_location}}</b>
+            <!-- </p><p>Số chỗ còn nhận <b>9</b></p> -->
+          </div>
+          <!-- <div class="calendar">
+            <div class="calendar-box">
+              <i class='bx bx-calendar-alt' ></i>
+              <label><a href="#"> Ngày khác</a></label>
+            </div>
+          </div> -->
+        </div>
+        <div class="box-support">
+          <label >Quý khách cần hỗ trợ?</label>
+          <div class="group-contact" style="margin-top: 10px;">
+            <a target="_blank" class="phone">
+              <i class='bx bxs-phone' ></i>
+              <p>Gọi miễn phí <br>qua internet</p>
+            </a>
+            <a class="mail">
+              <i class='bx bx-envelope' ></i>
+              <p>Gửi yêu cầu <br>hỗ trợ ngay</p>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="right-dt-op">
+        <div class="group-services">
+          <div class="item">
+            <img src="https://travel.com.vn/images/icons/utility/thoi%20gian.png" class="icon-img"><label>Thời gian</label><p>{{timeday}}</p>
+          </div>
+          <div class="item">
+            <img src="https://travel.com.vn/images/icons/utility/thoi%20gian.png" class="icon-img">
+            <label>Phương tiện di chuyển</label>
+            <p>{{tour.tour.transportation}}</p>
+          </div>
+          <div class="item">
+            <img src="https://travel.com.vn/images/icons/utility/diem%20tham%20quan.png" class="icon-img">
+            <label>Điểm tham quan</label>
+            <p>{{tour.destination.destination_name}}</p>
+          </div>
+          <div class="item">
+            <img src="https://travel.com.vn/images/icons/utility/am%20thuc.png" class="icon-img">
+            <label>Ẩm thực</label>
+            <p>Theo thực đơn</p>
+          </div>
+          <div class="item">
+            <img src="https://travel.com.vn/images/icons/utility/khach%20san.png" class="icon-img">
+            <label>Khách sạn</label>
+            <p></p>
+          </div>
+          <div class="item">
+            <img src="https://travel.com.vn/images/icons/utility/thoi%20gian%20ly%20tuong.png" class="icon-img">
+            <label>Thời gian lý tưởng</label>
+            <p>Quanh năm</p>
+          </div>
+          <div class="item">
+            <img src="https://travel.com.vn/images/icons/utility/doi%20tuong%20thich%20hop.png" class="icon-img">
+            <label>Đối tượng thích hợp</label>
+            <p>Cặp đôi, Gia đình nhiều thế hệ, Thanh niên</p>
+          </div>
+          <div class="item">
+            <img src="https://travel.com.vn/images/icons/utility/uu%20dai.png" class="icon-img">
+            <label>Ưu đãi</label>
+            <p>Đã bao gồm trong giá tour</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br> <br> <br>
+
+  <div class="container">
+    <div class="row">
+      <div class="padding12" style="width: 100%;">
+        <h2 class="lich-trinh-h2">Về chuyến đi</h2>
+      </div>
+    </div>
+  </div>
+
+  <br>
+  <div class="container">
+
+    <div class="info row">
+
+      <p style="text-align:justify">
+        <!-- <strong>- Azerai Cần Thơ Resort </strong>nằm yên bình bên cồn Ấu xanh mướt bởi cây xanh và dòng sông Hậu êm ả đầy phù sa. Khu nghỉ dưỡng mang thiết kế và triết lý hoàn hảo giữa một địa điểm đẹp cùng di sản địa phương của nhà sáng lập đại tài Adrian Zecha, được tờ The New York Times (Mỹ) bình chọn là một trong những khu nghỉ dưỡng đáng trải nghiệm nhất trên thế giới.
+        <br>
+        <br>
+        <strong>- Lênh đênh trên chiếc thuyền tam bản truyền thống,</strong> ngược dòng Mê Kông trải nghiệm cuộc sống độc đáo của người dân đôi bờ cùng với những chuyến du ngoạn trên bờ đầy hấp dẫn, hứa hẹn đem lại những bức ảnh và trải nghiệm đáng nhớ.
+        <br> -->
+
+        {{tour.tour.description}}
+      </p>
+
+    </div>
+
+  </div>
+
+</div>

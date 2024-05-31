@@ -1,0 +1,32 @@
+<div class="container">
+  <h2 class="titlle-section">
+    Điểm đến yêu thích
+  </h2>
+
+  <div class="contai-items">
+
+    <div class="item-provinces" *ngFor="let t of tinh">
+      <div class="card destination-item">
+        <div class="position-relative destination-item__image">
+          <a style="overflow: hidden; display: block;">
+            <img style="
+            border-radius: 10px;
+            height: 100%;
+            min-height: 207px;
+            object-fit: cover;
+            width: 100%;" src="{{t.img}}" class="card-img-top img-fluid">
+          </a>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title destination-item__title">
+            <a>{{t.ten}}</a>
+          </h3>
+          <p class="card-text destination-item__description">Đã có {{t.luotThamQuan}} lượt khách</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+

@@ -1,0 +1,226 @@
+.banner-travel{
+  position: relative;
+  height: max-content;
+  padding-bottom: 100px;
+}
+
+.img-item-bn {
+  max-height: 550px;
+  overflow: hidden;
+}
+
+.img-item-bn img {
+  height: 100%;
+  width: 100%;
+}
+
+.search-box{
+  position: absolute;
+  top: 70vh;
+  width: 100%;
+  z-index: 3;
+}
+
+.contai-sb{
+  width: 100%;
+  max-width: 1320px;
+  margin-left: auto;
+  margin-right: auto;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
+}
+
+.padd-ct-sb{
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  padding-left: var(--bs-gutter-x, .75rem);
+  padding-right: var(--bs-gutter-x, .75rem);
+  padding-bottom: 1.5rem !important;
+  padding-top: 1.5rem !important;
+}
+
+.row-sb{
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-left: calc(var(--bs-gutter-x) / -2);
+  margin-right: calc(var(--bs-gutter-x) / -2);
+  margin-top: calc(var(--bs-gutter-y)* -1);
+  justify-content: space-between;
+}
+
+.sb-bx-1{
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  width: 66%;
+  padding-left: calc(var(--bs-gutter-x) / 2);
+  padding-right: calc(var(--bs-gutter-x) / 2);
+  margin-top: .25rem !important;
+}
+
+.benx-benx{
+  justify-content: space-between;
+}
+
+ .chat-kol{
+  flex: 0 0 auto;
+  width: 39%;
+  margin-top: .25rem !important;
+}
+
+.chat-kol .input-kol{
+  border: 5px solid #ffc709;
+  background-color: #fff;
+  border-radius: 10px;
+  line-height: 1.25;
+  padding-bottom: .25rem !important;
+  padding-top: .25rem !important;
+  padding-left: .5rem !important;
+  padding-right: .5rem !important;
+  margin-bottom: .25rem !important;
+}
+
+.chat-kol .input-kol .center-kol {
+  display: flex; align-items: center;
+}
+
+.center-kol
+.flex-ssh-kol{
+  padding: 1rem !important;
+}
+
+.center-kol
+.flex-ssh-kol i {
+  font-size: 24px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.flex-righ-klol{
+  flex-grow: 1;
+  position: relative;
+}
+
+.h212{
+  color: #2d4271;
+  font-size: 13px;
+  margin-bottom: .25rem;
+}
+
+.location-select {
+  -webkit-box-align: center;
+  align-items: center;
+  cursor: default;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  min-height: 38px;
+  position: relative;
+  transition: all 100ms ease 0s;
+  background-color: rgb(255, 255, 255);
+  border-color: rgb(255, 255, 255);
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  box-sizing: border-box;
+  outline: 0px !important;
+  display: flex;
+
+}
+
+.text-select-location{
+  background: 0 0 !important;
+  border: none;
+  box-shadow: none !important;
+  color: #2d4271 !important;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700 !important;
+
+  padding: 0 !important;
+  width: 60% !important;
+
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: rgb(51, 51, 51);
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+.box-down-location-select{
+  -webkit-box-align: center;
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.box-down-location-select i {
+  display: flex;
+  transition: color 150ms ease 0s;
+  color: rgb(204, 204, 204);
+  padding: 8px;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.chat-kol-central{
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  margin-top: var(--bs-gutter-y);
+  max-width: 100%;
+  padding-left: calc(var(--bs-gutter-x) / 2);
+  padding-right: calc(var(--bs-gutter-x) / 2);
+
+  width: 16%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat-kol-central i {
+  font-size: 2rem;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: 1;
+  text-transform: none;
+}
+
+.sb-bx-2{
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  flex: 0 0 auto;
+  width: 16.66667%;
+  padding-left: calc(var(--bs-gutter-x) / 2);
+  padding-right: calc(var(--bs-gutter-x) / 2);
+}
+
+.chat-kol-cancel{
+  width: 100%;
+}
+
+.sb-bx-3 {
+  flex: 0 0 auto;
+  width: 16.66667%;
+}
+
+.sb-bx-3 .btn {
+  background: linear-gradient(180deg, #fe9b00, #ffc709 72.77%);
+  border-radius: 5px;
+  color: #000 !important;
+  display: inline-block;
+  font-size: 20px;
+  padding: 25px 16px;
+  width: 100%;
+  cursor: pointer;
+}

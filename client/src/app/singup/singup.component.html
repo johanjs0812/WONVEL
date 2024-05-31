@@ -1,0 +1,135 @@
+<main class="login">
+
+  <div class="wrapper">
+
+    <div class="row form-wrap">
+
+      <div class="col-12 right">
+
+        <div class="form-signin">
+
+          <div class="text-center heading mb-4">
+            <h5>Chào mừng Quý khách đến với</h5>
+            <h1 class="fw-bold m-0">WONVEL.COM</h1>
+          </div>
+
+          <div class="card bg-white">
+
+            <div class="d-flex tab">
+              <button routerLink="/login" class="w-50 p-3 signin-btn h5 mb-0 text-center fw-bold"
+              style="background: none; color: white;">Đăng nhập</button>
+              <a class="w-50 p-3 signup-btn h5 mb-0 text-center fw-bold"
+              style="
+              background-color: #fff;
+              border-radius: 10px 10px 0 0;
+              color: #2d4271;">Đăng ký</a>
+            </div>
+
+            <div class="box-loading" hidden="" style="display: none;">
+              <div class="col-sm-12 col-md-auto col-lg-auto">
+              <div class="loading animate__animated animate__fadeIn ">
+                <img loading="lazy" alt="Vietravel" src="/images/order/plane_loading.gif" width="120" height="45" style="position: relative; left: -18px;">
+                <div class="loading03 ">
+                  <span>V</span><span>I</span><span>E</span><span>T</span><span>R</span><span>A</span><span>V</span><span>E</span><span>L</span></div><br>
+                  <span class="desc">Mạng bán tour trực tuyến đầu tiên tại Việt Nam.</span>
+                </div>
+              </div>
+            </div>
+
+            <form [formGroup]="singupForm" (ngSubmit)="onSubmit()">
+
+              <div class="mb-3">
+                <label class="form-label fw-bold">Họ và tên</label>
+                <span class="text-danger">*</span>
+                <input formControlName="full_name" class="form-control" name="full_name" type="text" placeholder="Tài khoản" value="" style="margin-top: 10px;"
+                [ngStyle]="{'border-color': singupForm.controls['full_name'].invalid && singupForm.controls['full_name'].touched || isUnauthorizedError ? 'red' : null}">
+                <div *ngIf="singupForm.controls['full_name'].invalid && singupForm.controls['full_name'].touched" class="alert alert-danger"  style="color: red; margin-top: 5px;">
+                  Tên không được để trống, tối thiểu 4 ký tự, không chấp nhận ký tự đặc biệt và số trong họ tên.
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-bold">Số điện thoại</label>
+                <span class="text-danger">*</span>
+                <input formControlName="phone_number"  class="form-control" name="phone_number" type="number" placeholder="Tài khoản" value="" style="margin-top: 10px;"
+                [ngStyle]="{'border-color': singupForm.controls['phone_number'].invalid && singupForm.controls['phone_number'].touched || isUnauthorizedError ? 'red' : null}">
+                <div *ngIf="singupForm.controls['phone_number'].invalid && singupForm.controls['phone_number'].touched" class="alert alert-danger"  style="color: red; margin-top: 5px;">
+                  Số điện thoại không được để trống, tối thiểu 10 chữ số tối đa 11 số.
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-bold">Email tài khoản</label>
+                <span class="text-danger">*</span>
+                <input formControlName="email" #email id="Email" class="form-control" name="Email" type="text" placeholder="Tài khoản" value="" style="margin-top: 10px;"
+                [ngStyle]="{'border-color': singupForm.controls['email'].invalid && singupForm.controls['email'].touched || isUnauthorizedError ? 'red' : null}">
+                <div *ngIf="singupForm.controls['email'].invalid && singupForm.controls['email'].touched" class="alert alert-danger"  style="color: red; margin-top: 5px;">
+                  Vui lòng nhập email hợp lệ.
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-bold">Mật khẩu</label>
+                  <span class="text-danger">*</span>
+                  <input formControlName="pass" #pass id="Password" class="form-control" name="Password" type="password" placeholder="Mật khẩu" value="" style="margin-top: 10px;"
+                  [ngStyle]="{'border-color': singupForm.controls['pass'].invalid && singupForm.controls['pass'].touched || isUnauthorizedError ? 'red' : null}">
+                  <div *ngIf="singupForm.controls['pass'].invalid && singupForm.controls['pass'].touched" class="alert alert-danger" style="color: red; margin-top: 5px">
+                    Mật khẩu bao gồm số và chữ, tối thiểu 4 ký tự.
+                  </div>
+                  <div class="text-end py-2">
+                  </div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label fw-bold">Nhập lại mật khẩu</label>
+                  <span class="text-danger">*</span>
+                  <input formControlName="pass2" #pass id="Password2" class="form-control" name="Password2" type="password" placeholder="Mật khẩu" value="" style="margin-top: 10px;"
+                  [ngStyle]="{'border-color': singupForm.controls['pass2'].invalid && singupForm.controls['pass2'].touched || isUnauthorizedError ? 'red' : null}">
+                  <div *ngIf="singupForm.controls['pass2'].invalid && singupForm.controls['pass2'].touched" class="alert alert-danger" style="color: red; margin-top: 5px">
+                    Mật khẩu không khớp.
+                  </div>
+                  <div class="text-end py-2">
+                  </div>
+              </div>
+
+              <div class="mb-3 text-center"></div>
+
+              <p style="color: red;">
+                {{errLg}}
+              </p>
+
+              <button type="submit" id="btndangnhap" class="btn btn-primary w-100 py-3 fw-bold">
+                Đăng ký
+                <i class="fas fa-sign-in-alt" aria-hidden="true"></i>
+              </button>
+            </form>
+
+            <div class="form-divider">Hoặc</div>
+            <div class="add-on">
+              <div id="btnfacebook" class="add-on-btn facebook">
+                <span style="transition: opacity 0.5s ease 0s;">
+                  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+                  <button type="button" class="btn btn-link text-white text-decoration-none metro">
+                    <i class="fa fa-facebook">
+                    </i> Tiếp tục với Facebook
+                  </button>
+               </span>
+              </div>
+              <div id="btngoogle" class="add-on-btn google">
+                <button id="customBtn" class="btn btn-link text-white text-decoration-none">
+                  <i class="fab fa-google-plus-g"></i> Tiếp tục với Google
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</main>

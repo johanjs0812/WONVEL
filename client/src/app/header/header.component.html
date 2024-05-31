@@ -1,0 +1,55 @@
+<header>
+
+  <div class="box-flex">
+
+    <a class="logo" routerLink="">
+      <img src="assets/logo.png" alt="">
+    </a>
+
+    <div class="box-2">
+      <ul class="ul-hd">
+        <li class="li-hd">
+          <a routerLink="du-lich">Du lịch</a>
+        </li>
+        <li class="li-hd" routerLink="">
+          <a href="">Tin tức</a>
+        </li>
+        <li class="li-hd" routerLink="">
+          <a href="">Về chúng tôi</a>
+        </li>
+        <li class="li-hd" routerLink="">
+          <a href="">Liên hệ</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="box-3">
+      <div class="form-ss">
+        <form>
+          <label for="submit">Từ khoá</label>
+          <input type="text" name="search" class="ipt" placeholder="Bắt đầu tìm kiếm..." value="">
+          <input type="submit" name="submit" title="Tìm kiếm" class="sm" value="">
+          <i class='bx bx-search i-c'></i>
+          <div class="form-search-wrapper"></div>
+        </form>
+      </div>
+
+      <div class="gr-ft">
+        <div class="account item">
+
+          <a title="Tài khoản" class="so-po" routerLink="login" *ngIf="!user">
+            <i class='bx bx-user o-p' ></i>
+          </a>
+
+          <a style="display: flex; align-items: center;" *ngIf="user">
+            <p style="margin-bottom: 0px; margin-right: 5px">{{user?.full_name}}</p>
+            <i class='bx bx-log-in' style="font-size: 20px;" (click)="logout()"></i>
+          </a>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</header>

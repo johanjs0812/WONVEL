@@ -1,0 +1,287 @@
+<div class="tour-search">
+
+  <div class="container">
+    <div class="row">
+      <ul class="breadcrumbs__wrapper d-flex align-items-center">
+        <li>
+          <a href="" style="margin-left: 10px;">
+            <span>Du lịch</span>
+          </a>
+          <!-- » -->
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="left-bar">
+        <div class="sidebar-inner">
+          <div>
+            <div class="tour-search-result__filter__brand">
+              <h2 class="font-weight-bold">Bộ lọc tìm kiếm</h2>
+            </div>
+            <div class="location-container">
+              <div>
+                <div class="tour-search-result__filter__heading">
+                  <span class="fw-bold">Tất cả</span>
+                </div>
+
+                <div class="pt-2" style="padding-top: 16px;">
+
+                  <div class="start-to-stop">
+                    <h5 class="point-start-title s-title">Điểm đi</h5>
+
+                    <div class="css-b62m3t-container" style="position: relative;">
+
+                      <div class=" css-13cymwt-control" style="cursor: pointer;" (click)="toggleDisplayStyle2(selectedProvince2, $event)">
+                        <div class="css-hlgwow">
+                          <div class="css-1dimb5e-singleValue">{{selectedProvince2 || 'Tất cả'}}</div>
+                          <div class="css-19bb58m">
+                            <input class="" id="react-select-6-input" value="" style="color: inherit; background: 0px center; opacity: 0; width: 100%; grid-area: 1 / 2; font: inherit; min-width: 2px; border: 0px; margin: 0px; outline: 0px; padding: 0px;">
+                          </div>
+                        </div>
+                        <div class=" css-1wy0on6">
+                          <div class=" css-1xc3v61-indicatorContainer">
+                            <i class='bx bx-chevron-down'></i>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="box-select-loaction-go" [ngStyle]="{'display': displayStyle2}">
+                        <div class="option-local" (click)="toggleDisplayStyle2('Tất cả', $event)" (click)="updateFilter('startFilter', undefined)">Tất cả</div>
+                        <div class="option-local" *ngFor="let province of provinces"
+                        (click)="toggleDisplayStyle2(province, $event)"
+                        (click)="updateFilter('startFilter', province)">
+                          {{province}}
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div class="start-to-stop">
+                    <h5 class="point-start-title s-title">Điểm đến</h5>
+                    <div class="css-b62m3t-container" style="position: relative;">
+
+                      <div class=" css-13cymwt-control" style="cursor: pointer;" (click)="toggleDisplayStyle(selectedProvince, $event)">
+                        <div class="css-hlgwow">
+                          <div class="css-1dimb5e-singleValue">{{selectedProvince || 'Tất cả'}}</div>
+                          <div class="css-19bb58m">
+                            <input class="" id="react-select-6-input" value="" style="color: inherit; background: 0px center; opacity: 0; width: 100%; grid-area: 1 / 2; font: inherit; min-width: 2px; border: 0px; margin: 0px; outline: 0px; padding: 0px;">
+                          </div>
+                        </div>
+                        <div class=" css-1wy0on6">
+                          <div class=" css-1xc3v61-indicatorContainer">
+                            <i class='bx bx-chevron-down'></i>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="box-select-loaction-go" [ngStyle]="{'display': displayStyle}">
+                        <div class="option-local" (click)="toggleDisplayStyle('Tất cả', $event)" (click)="updateFilter('endFilter', undefined)">Tất cả</div>
+                        <div class="option-local" *ngFor="let province of provinces"
+                        (click)="toggleDisplayStyle(province, $event)"
+                        (click)="updateFilter('endFilter', province)">{{province}}</div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div class="tour-search-result__filter__block">
+                    <h5 class="s-title">Số ngày</h5>
+                    <div class="btn-group tour-search-result__filter__room" style="width: 100%;">
+                      <div class="row" style="margin: 0; width: 100%;">
+
+                        <div class="col-6" *ngFor="let button of buttons; let i = index" style="background-color: rgb(255, 255, 255); color: rgb(33, 37, 41);">
+                          <button style=" cursor: pointer;" class="btn-stitll" [ngClass]="{'active': selectedButton === i}" (click)="selectButton(i)" (click)="updateFilter('dayFilter', button)">
+                            {{ button }}
+                          </button>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="tour-search-result__filter__block">
+                    <h5 class="date-go-to-back-title s-title">Ngày đi</h5>
+
+                    <div mat-raised-button class="datepciker-wrap" (click)="picker.open()">
+                      <i class='bx bxs-calendar-week'></i>
+                      <div class="calendarWrap bg-transparent" style="overflow: hidden;">
+
+                        <input [value]="valueDate" class="form-control input-date input-noborder bg-transparent" id="date-range-hotel" style="outline: none;">
+
+                        <mat-form-field>
+                          <input matInput [matDatepicker]="picker" readonly #dateInput
+                          class="form-control input-date input-noborder bg-transparent" id="date-range-hotel"
+                          style="outline: none;" (dateChange)="onDateChange($event)">
+                          <mat-datepicker #picker ></mat-datepicker>
+                        </mat-form-field>
+
+                      </div>
+                    </div>
+
+                    <!-- <mat-form-field appearance="fill"> -->
+                      <!-- <input matInput [matDatepicker]="picker" class="date-data" #dateInput style="display: none;"> -->
+                      <!-- <mat-datepicker #picker (dateChange)="onDateChange($event)"></mat-datepicker> -->
+                    <!-- </mat-form-field> -->
+
+                  </div>
+
+                  <!-- <div class="tour-search-result__filter__block">
+                    <h5 class="s-title">Số người</h5>
+                    <div class="btn-group tour-search-result__filter__room" style="width: 100%;">
+                      <div class="row" style="margin: 0; width: 100%;">
+
+                        <div class="col-6" style="background-color: rgb(255, 255, 255); color: rgb(33, 37, 41);">
+                          <button class="btn-stitll" >
+                            1 người
+                          </button>
+                        </div>
+
+                        <div class="col-6" style="background-color: rgb(255, 255, 255); color: rgb(33, 37, 41);">
+                          <button class="btn-stitll">
+                            2 người
+                          </button>
+                        </div>
+
+                        <div class="col-6" style="background-color: rgb(255, 255, 255); color: rgb(33, 37, 41);">
+                          <button class="btn-stitll">
+                            3-5 người
+                          </button>
+                        </div>
+
+                        <div class="col-6" style="background-color: rgb(255, 255, 255); color: rgb(33, 37, 41);">
+                          <button class="btn-stitll">
+                            5+ người
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div> -->
+
+                  <!-- <p class="s-mark-title">Bộ lọc tìm kiếm</p> -->
+
+                  <div class="tour-search-result__filter__block" style="margin-bottom: 0 !important;">
+                    <h5 class="s-title">Thông tin vận chuyển</h5>
+                    <div class="btn-group tour-search-result__filter__room" style="width: 100%;">
+                      <div class="row" style="margin: 0; width: 100%;">
+
+                        <div class="col-6" *ngFor="let button of buttons2; let i = index" style="background-color: rgb(255, 255, 255); color: rgb(33, 37, 41);">
+                          <button style=" cursor: pointer;" class="btn-stitll" [ngClass]="{'active': selectedButton2 === i}" (click)="selectButton2(i)" (click)="updateFilter('vehicleFilter', button)">
+                            {{ button }}
+                          </button>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                  <h5 class="s-title">Ngân sách của Quý khách</h5>
+
+                  <div class="ranger-price giatien" style="margin-bottom: 0;">
+
+                    <div style="display: flex; align-items: center; column-gap: 20px;">
+                      <div class="btn-price">
+                        <input type="number" placeholder="Từ" #fromInput>
+                      </div>
+                      <div>-</div>
+                      <div class="btn-price">
+                        <input type="text" placeholder="Đến" #toInput>
+                      </div>
+                      <div class="box-btn-se" (click)="clickPrice(fromInput.value, toInput.value)">
+                        <button>Tìm</button>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="right-bar">
+        <div class="pen-3">
+          <h1 class="heading-1">Du lịch </h1>
+          <div class="py-2"><p class="card-text mb-1 text-justify"></p><div></div><p></p></div>
+        </div>
+
+        <div>
+          <div class="order-by">
+            <div class="order-by-title ">Chúng tôi tìm thấy <strong>{{count_res}}</strong> tours cho Quý khách.</div>
+            <div class="order-by-left">
+              <div class="order-wrap">
+                <span>Sắp xếp theo</span>
+                <select class="form-control dropdown Filter" id="sllOrder" name="sllOrder" style="outline: none;">
+                  <option>--- Chọn ---</option>
+                  <option>Theo giá thấp -&gt; cao</option>
+                  <option>Theo giá cao -&gt; thấp</option>
+                  <option>Giảm giá nhiều nhất</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contai-product" style="flex-wrap: wrap; row-gap: 25px;" >
+
+          <div class="col-col" *ngFor="let tour of tours">
+            <div class="card-item" >
+              <div class="box-top">
+                <div class="box-img">
+                  <a [routerLink]="['/detail', tour.id]">
+                    <img src="{{tour.img}}" alt="">
+                  </a>
+                </div>
+              </div>
+              <div class="box-center pad-rs">
+                <p class="p-1">{{formatVndDate(tour.start_date)}} - {{Duration(tour.start_date, tour.end_date)}}</p>
+                <p class="p-2">
+                  <a [routerLink]="['/detail', tour.id]">
+                    {{tour.tour_name}}
+                  </a>
+                </p>
+                <div class="p-3">
+                  <div>Mã tour:</div>
+                  <div style="display: flex; align-items: center;">
+                    <i class='bx bxs-coupon'></i>
+                    <p style="margin-bottom: 0px;">{{tour.code_tour}}</p>
+                  </div>
+                </div>
+              </div>
+              <p class="box-bot padding-1rem pad-rs pad-top-rs">
+                Nơi khởi hành: {{tour.departure_location}}
+              </p>
+
+              <!-- <p class="box-bot padding-1rem pad-rs pad-top-rs" >
+                <span style="font-weight: 700; margin-right: 5px;">Số chỗ còn:</span> <span style="color: red; font-weight: 700; font-size: 20px;">9</span>
+              </p> -->
+
+              <div class="box-last padding-1rem pad-rs ">
+                <div class="tour-item__price__wrapper">
+                  <div class="tour-item__price--old" [style.visibility]="tour.discount_price ? 'visible' : 'hidden'">
+                    Giá <span class="tour-item__price--old__number">{{formatPrice(tour.price)}}</span>
+                  </div>
+                  <div class="tour-item__price--current">
+                    <span class="tour-item__price--current__number pe-2 mb-0">{{ formatPrice(tour.discount_price ?? tour.price) }}</span>
+                    <span class="tour-item__price--current__discount small p-1" [routerLink]="['/detail', tour.id]">Xem chi tiết</span>
+                  </div>
+                  <div class="tour-item__price__timer py-2" [routerLink]="['/inforpm', tour.id]">
+                    <span>Đặt ngay</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>

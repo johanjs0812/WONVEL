@@ -1,0 +1,200 @@
+<main class="find-booking">
+  <section>
+
+    <div class="container">
+
+      <div class="row py-4 flex-md-row flex-column-reverse" style="display: flex; justify-content: space-between;">
+
+        <div class="col-md-8 col-12 left" style="width: 66%; padding: 0 12px;">
+          <section>
+            <div class="contact-info p-4 mb-4">
+
+              <div class="heading">
+                <h5 class="fw-bold tieude" data-gtm-vis-first-on-screen778132_164="16607570">THÔNG TIN LIÊN LẠC</h5>
+              </div>
+              <div class="row">
+                <div class="col-12 col-md-6">
+                  <span class="label">Họ tên</span>
+                  <p class="info">{{hoadon?.user?.full_name}}</p>
+                </div>
+                <div class="col-md-6 col-12">
+                  <span class="label">Email</span>
+                  <p class="info">{{hoadon?.user?.email}}</p>
+                </div>
+                <div class="col-md-6 col-12">
+                  <span class="label">Địa chỉ</span>
+                  <p class="info">{{hoadon?.user?.address}}</p>
+                </div>
+                <div class="col-md-3 col-6">
+                  <span class="label">Di động</span>
+                  <p class="info">{{hoadon?.user?.phone_number}}</p>
+                </div>
+                <div class="col-md-3 col-6">
+                  <span class="label">Điện thoại</span>
+                  <p class="info">{{hoadon?.user?.phone_number}}</p>
+                </div>
+                <div class="col-md-3 col-12 d-none">
+                  <span class="label">Số khách</span>
+                  <p class="info" *ngFor="let group of ageGroup | keyvalue">
+                    <ng-container *ngIf="group.value != 0">
+                      {{ group.key }}: {{ group.value }}
+                    </ng-container>
+                  </p>
+                </div>
+                <div class="col-12">
+                  <span class="label">Ghi chú</span>
+                  <p class="info">Booking từ WONVEL.COM </p>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="booking-detail p-4 mb-4">
+
+              <div class="heading">
+                <h5 class="fw-bold tieude" data-gtm-vis-first-on-screen778132_164="16607571">CHI TIẾT BOOKING</h5>
+              </div>
+              <div class="row item">
+                <div class="col-md-3 col-12 label">Số booking</div>
+                <div class="col-md-9 col-12 text">
+                  <span class="text-primary fw-bold">{{hoadon?.code}}</span>(Quý khách vui lòng nhớ số booking để thuận tiện cho các giao dịch sau này)</div>
+              </div>
+              <div class="row item">
+                <div class="col-md-3 col-12 label">Trị giá booking</div>
+                <div class="col-md-9 col-12 text" data-gtm-vis-first-on-screen778132_145="16607556">{{hoadon?.total_price}}</div>
+              </div>
+              <div class="row item">
+                <div class="col-md-3 col-12 label">Số tiền đã thanh toán</div>
+                <div class="col-md-9 col-12 text">{{khachtrabaonhieuroi}}</div>
+              </div>
+              <div class="row item">
+                <div class="col-md-3 col-12 label">Số tiền còn lại</div>
+                <div class="col-md-9 col-12 text">{{tienconlai}}</div>
+              </div>
+              <div class="row item">
+                <div class="col-md-3 col-12 label">Ngày đăng ký</div>
+                <div class="col-md-9 col-12 text">{{hoadon?.booking_date}}</div>
+              </div>
+              <div class="row item">
+                <div class="col-md-3 col-12 label">Hình thức thanh toán</div>
+                <div class="col-md-9 col-12 text">
+                  <span *ngFor="let method of invoices">{{method.payment_method}}</span><br>
+                <!-- <button class="btn btn-primary" id="btnChangePayment">Thay đổi</button> -->
+                </div>
+
+              </div>
+              <div class="row item">
+                <div class="col-md-3 col-12 label">Tình trạng</div>
+                <div class="col-md-9 col-12 text">{{hoadon?.payment_status}}</div>
+              </div>
+              <!-- <div class="row item">
+                <div class="col-md-3 col-12 label">Thời hạn thanh toán</div>
+                <div class="col-md-9 col-12 text">
+                  <span class="text-primary fw-bold">27/05/2024 03:06:17 </span>(Theo giờ Việt Nam. Booking sẽ tự động hủy nếu quá thời hạn thanh toán trên)</div>
+              </div> -->
+
+            </div>
+          </section>
+        </div>
+
+        <div class="col-md-4 col-12 right" style="width: 33%; padding: 0 12px;">
+
+          <div class="group-checkout">
+            <div class="heading">
+              <h5 class="fw-bold tieude" data-gtm-vis-first-on-screen778132_164="16607574">PHIẾU XÁC NHẬN BOOKING</h5>
+            </div>
+            <div class="product">
+              <div class="product-image">
+                <a href="#1">
+                  <img src="{{hoadon?.tour?.img}}" class="img-fluid" alt="">
+                </a>
+              </div>
+              <div class="product-content">
+                <p class="title">{{hoadon?.tour.tour_name}}</p>
+                <span>Số booking:<span class="text-primary fw-bold"> {{hoadon?.code}}</span></span>
+              </div>
+            </div>
+            <div class="detail">
+              <div class="row item">
+                <div class="col-4 fw-bold">Mã tour</div>
+                <div class="col-8 text-end">{{hoadon?.tour.code_tour}}</div>
+              </div>
+              <!-- <div class="row item">
+                <div class="col-4 fw-bold">Hành trình</div>
+                <div class="col-8 text-end">SGN - HAN//HAN - SGN</div>
+              </div> -->
+              <div class="row item">
+                <div class="col-4 fw-bold">Ngày đi</div>
+                <div class="col-8 text-end">{{hoadon?.tour.start_date}}</div>
+              </div>
+              <div class="row item">
+                <div class="col-4 fw-bold">Ngày về</div>
+                <div class="col-8 text-end">{{hoadon?.tour.end_date}}</div>
+              </div>
+              <div class="row item">
+                <div class="col-4 fw-bold">Nơi khởi hành</div>
+                <div class="col-8 text-end">{{hoadon?.tour.departure_location}}</div>
+              </div>
+            </div>
+            <div class="box-loading" hidden="">
+              <div class="col-sm-12 col-md-auto col-lg-auto">
+                <div class="loading animate__animated animate__fadeIn ">
+                  <img loading="lazy" alt="Vietravel" src="{{hoadon?.tour?.img}}" width="120" height="45" style="position: relative; left: -18px;"><div class="loading03 ">
+                  <span>V</span><span>I</span><span>E</span><span>T</span><span>R</span><span>A</span><span>V</span><span>E</span><span>L</span></div><br><span class="desc">Mạng bán tour trực tuyến đầu tiên tại Việt Nam.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="d-none d-lg-block">
+
+        <div class="passenger-list p-4 mb-4">
+
+          <div class="heading">
+            <h5 class="fw-bold tieude" data-gtm-vis-first-on-screen778132_164="16609655">DANH SÁCH HÀNH KHÁCH</h5>
+          </div>
+          <table class="table booking-table">
+            <thead>
+              <tr class="fw-bold">
+                <td>Họ tên</td>
+                <td class="d-none">Giảm giá?</td>
+                <td>Ngày sinh</td>
+                <td>Giới tính</td>
+                <td>Địa chỉ</td>
+                <td>Độ tuổi</td>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let guest of hoadon?.guests">
+                <td>{{guest.name}}</td>
+                <td class="d-none">{{ getPrieGroup(guest.birthday) }}</td>
+                <td>{{guest.birthday}}</td>
+                <td>{{guest.gender}}</td>
+                <td></td>
+                <td>{{ getAgeGroup(guest.birthday) }}</td>
+              </tr>
+            </tbody>
+
+            <tfoot>
+              <tr>
+                <td colspan="11" class="text-end">
+                  <span>Tổng cộng: </span>
+                  <span class="price text-primary fw-bold">{{hoadon?.total_price}}</span>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+</main>

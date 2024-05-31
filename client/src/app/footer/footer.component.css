@@ -1,0 +1,163 @@
+footer {
+  background: #f9f9f9;
+  padding-top: 45px;
+}
+
+.ctn-ftop{
+  max-width: 1320px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: .75rem;
+  padding-left: var(--bs-gutter-x, .75rem);
+  padding-right: .75rem;
+  padding-right: var(--bs-gutter-x, .75rem);
+  width: 100%;
+}
+
+.rw-rw {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: calc(var(--bs-gutter-x) / -2);
+  margin-right: calc(var(--bs-gutter-x) / -2);
+  margin-top: calc(var(--bs-gutter-y)* -1);
+}
+
+.cocobay-p {
+  display: block;
+  flex: none;
+  margin-bottom: 40px;
+  width: 25%;
+}
+
+.cocobay-p h4 {
+  margin-bottom: 12px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 30px;
+  width: 100%;
+  color: #2d4271 !important;
+}
+
+.coco-tour{
+  display: flex;
+}
+
+.menu {
+  width: 40%;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-item{
+  line-height: 30px;
+}
+
+.coco-app
+{
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.mb-bb{
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.mb-bb p {
+  margin-bottom: 10px;
+}
+
+.h4-ppp{
+  margin-bottom: 12px;
+}
+
+.contact-info{
+  font-weight: 300;
+  line-height: 30px;
+}
+
+.socials{
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.social{
+  padding-right: 20px;
+}
+
+.social a i {
+  color: #2d4271;
+  font-size: 25px;
+}
+
+.newsletter form {
+  background: #fff;
+  border: 1px solid #7d8fab;
+  border-radius: 10px;
+  box-sizing: border-box;
+  height: 40px;
+  margin-bottom: 15px;
+  margin-top: -5px;
+  max-width: 323px;
+  overflow: hidden;
+  position: relative;
+}
+
+footer .newsletter form input[type=text] {
+  border: none;
+  color: #2d4271;
+  font-weight: 400;
+  height: 100%;
+  padding: 0 25px;
+  width: 100%;
+}
+
+footer .newsletter form input[type=submit] {
+  background: 0 0;
+  border: none;
+  border-left: 1px solid #7d8fab;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 50px;
+  z-index: 1;
+}
+
+footer .newsletter form i {
+  color: #2d4271;
+  font-size: 18px;
+  pointer-events: none;
+  position: absolute;
+  right: 13px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  z-index: 1;
+  cursor: pointer;
+}
+
+.securi-payment{
+  display: flex; justify-content: space-between;
+}
+
+.securi{
+  max-width: 178px;
+}
+
+.payment{
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  /* min-width: 300px; */
+  padding-left: 43px;
+}
