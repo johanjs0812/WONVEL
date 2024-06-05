@@ -74,10 +74,13 @@ export class SingupComponent implements OnInit{
   }
 
   singup(data:any){
+    console.log('dachay', data)
     this.userService.singup(data).subscribe(response => {
+      console.log('true', data)
       if (response) {
         this.isUnauthorizedError = false;
         this.errLg = '';
+        alert('Đăng ký tài khoản thành công, mời đăng nhập');
         this.router.navigate(['/login']);
       };
     }, error => {
